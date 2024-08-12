@@ -1,0 +1,49 @@
+{
+  "name": "crud-santi",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro check && astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/check": "^0.9.2",
+    "@astrojs/react": "^3.3.0",
+    "@astrojs/sitemap": "^3.1.4",
+    "@astrojs/tailwind": "^5.1.0",
+    "@floating-ui/dom": "^1.6.10",
+    "astro": "^4.13.3",
+    "firebase": "^10.12.5",
+    "firebase-admin": "^12.3.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "sweetalert2": "^11.12.4",
+    "tailwindcss": "^3.4.9",
+    "typescript": "^5.5.4"
+  },
+  "description": "![Portada](image-1.png)",
+  "main": "index.astro",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SofiDevO/portfolio-astrosofidev-garrux.git"
+  },
+  "keywords": [
+    "astro",
+    "sofidev",
+    "frontend",
+    "portfolio",
+    "javascript",
+    "portafolio",
+    "css",
+    "tailwind"
+  ],
+  "author": "SofiDev / Garrux",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/SofiDevO/portfolio-astrosofidev-garrux/issues"
+  },
+  "homepage": "https://github.com/SofiDevO/portfolio-astrosofidev-garrux#readme"
+}
