@@ -14,7 +14,7 @@ import { firebase } from '../../firebase/config';
 export const registerUser = defineAction({
     accept: 'form',
     input: z.object({
-        name: z.string().min(2),
+        name: z.string().min(2).optional(),
         email: z.string().min(2),
         password: z.string().min(6),
     }),

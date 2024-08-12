@@ -1,0 +1,19 @@
+---
+
+
+import { mainMenu } from '../components/data/menuData';
+import Footer from '../components/Footer/Footer.astro';
+import Header from '../components/header/Header.astro';
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Santi | Developer In progress">
+	<Header origin={mainMenu} />
+    <section class="min-h-screen">
+        <h1>
+            Hola protected
+        </h1>
+
+    </section>
+	<Footer/>
+</Layout>
