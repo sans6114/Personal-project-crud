@@ -11,19 +11,12 @@ import { getAuth } from 'firebase/auth';
 // Your web app's Firebase configuration
 
 const firebaseConfig = {
-
   apiKey: "AIzaSyCarGnuKwzqmUgRIybYV44gdUn6RGaqhBM",
-
-  authDomain: "crud-santi.firebaseapp.com",
-
-  projectId: "crud-santi",
-
-  storageBucket: "crud-santi.appspot.com",
-
-  messagingSenderId: "712695390954",
-
-  appId: "1:712695390954:web:371fce18f1a164904f2d93"
-
+  authDomain: import.meta.env.FIREBASE_AUTH_DOMAIN,
+  projectId: import.meta.env.FIREBASE_PROJECT_ID,
+  storageBucket: import.meta.env.FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.FIREBASE_MESSAGE_ID, // Recuerda que corregimos esto anteriormente
+  appId: import.meta.env.FIREBASE_APP_ID
 };
 
 

@@ -23,7 +23,7 @@ const { title, subtitle } = Astro.props;
 		{subtitle}
 	</p>
 
-	<form method="POST" action={'/protected' + actions.logIn()} class="flex flex-col space-y-4 gap-4">
+	<form action="" class="flex flex-col space-y-4 gap-4">
 		<input
 			class="p-2 rounded-xl border"
 			type="email"
@@ -106,3 +106,49 @@ const { title, subtitle } = Astro.props;
 	</div>
 </section>
 
+<script>
+	import { firebase } from "@/firebase/config";
+  import { actions } from "astro:actions";
+  import { signInWithPopup } from "firebase/auth";
+  import { GoogleAuthProvider } from "firebase/auth";
+	import Swal from "sweetalert2";
+  
+	document.addEventListener("DOMContentLoaded", () => {
+	  const form = document.querySelector("form") as HTMLFormElement;
+	  const buttonSubmit = document.querySelector(
+		"#btn-submit"
+	  ) as HTMLButtonElement;
+	  const buttonGoogle = document.querySelector(
+		"#btn-google"
+	  ) as HTMLButtonElement;
+  
+	  form.addEventListener("submit", async (e) => {
+		e.preventDefault();
+		//para no permitir que las personas hagan doble click accidentalmente
+		buttonSubmit?.setAttribute("disabled", "disabled");
+  
+		try {
+		  const formData = new FormData(form)
+		  const {data, error} = await actions.logIn.safe(formData);
+		  if (error) {
+          console.log(error);
+          Swal.fire({
+            icon: "error",
+            title: "Credenciales no validas",
+            text: error.message,
+          });
+        } else {
+          //el ususario esta correctamente validado
+          console.log(data);
+          window.location.replace("/protected");
+        }
+        form.reset();
+		} catch (err) {
+		  console.error("Submission failed", err);
+		} finally {
+		  buttonSubmit.removeAttribute("disabled");
+		}
+	  });
+
+	});
+  </script>

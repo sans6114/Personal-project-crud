@@ -125,7 +125,19 @@ const { title, subtitle } = Astro.props;
   
 		try {
 		  const formData = new FormData(form);
-		  const res = await actions.registerUser.orThrow(formData)!;
+		  const { data, error } = await actions.registerUser.safe(formData);
+  
+		  if (error) {
+			console.log(error);
+			Swal.fire({
+			  icon: "error",
+			  title: 'Credenciales no validas',
+			  text: error.message
+			})
+		  } else {
+			console.log(data);
+			window.location.replace('/protected')
+		  }
 		  form.reset();
 		} catch (err) {
 		  console.error('Submission failed', err);

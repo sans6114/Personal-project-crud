@@ -1,0 +1,15 @@
+---
+import HeroProtected from '@/components/hero/HeroProtected.astro';
+import Modal from '@/components/protected/Modal.astro'
+import { mainMenu } from '../../components/data/menuData';
+import Footer from '../../components/Footer/Footer.astro';
+import Header from '../../components/header/Header.astro';
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout title="Protected | Aplication">
+	<Header origin={mainMenu} />
+	<HeroProtected />
+    <Modal/>
+	<Footer />
+</Layout>

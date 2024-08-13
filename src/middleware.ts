@@ -7,7 +7,7 @@ const privateRoutes = ['/protected']
 const notPrivateRoutes = ['/']
 
 // `context` and `next` are automatically typed
-export const onRequest = defineMiddleware(async ({ url, request, locals, redirect }, next) => {
+export const onRequest = defineMiddleware(async ({ url, locals, redirect }, next) => {
 
 
     const isLoggedIn = !!firebase.auth.currentUser //esta logueaddo

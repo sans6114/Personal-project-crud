@@ -19,7 +19,7 @@ export const registerUser = defineAction({
       password: z.string().min(6),
       remember_me: z.boolean().optional(),
     }),
-    handler: async ({ name, email, password, remember_me }, { cookies, redirect }) => {
+    handler: async ({ name, email, password, remember_me }, { cookies }) => {
       //cookies recordando el email si tengo el valor rememberme en true
       if (remember_me) {
         cookies.set('email', email, {
@@ -45,7 +45,6 @@ export const registerUser = defineAction({
           //url: 'http://localhost:4321/protected'
           url: `${import.meta.env.WEBSITE_URL}/protected`
         })
-       
         return user
       } catch (error) {
         const firebaseError = error as AuthError

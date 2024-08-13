@@ -15,7 +15,7 @@ const { isLoggedIn } = Astro.locals;
 
 <header class="header">
 	<div class="header__container">
-		<Logo name="Jhon Doe" />
+		<Logo name="Santiago Sosa" />
 		<nav class="links" tabindex="0.1">
 			<button class="menu__btn">Menú</button>
 			<ul class="header__list">
@@ -52,12 +52,17 @@ const { isLoggedIn } = Astro.locals;
 								</li>
 							))
 				}
-				<a
-					href="/login"
-					class="bg-transparent hover:bg-violet-700 text-white font-semibold hover:text-white py-2 px-4 border border-violet-500 hover:border-transparent rounded"
-				>
-					Log In
-				</a>
+				{
+					!user && (
+						<a
+							href="/login"
+							class="bg-transparent hover:bg-violet-700 text-white font-semibold hover:text-white py-2 px-4 border border-violet-500 hover:border-transparent rounded"
+						>
+							Log In
+						</a>
+					)
+				}
+
 				{
 					user && (
 						<a class="bg-transparent hover:bg-violet-700 text-white font-semibold hover:text-white py-2 px-4 border border-violet-500 hover:border-transparent rounded">
@@ -82,16 +87,13 @@ const { isLoggedIn } = Astro.locals;
 
 <script>
 	import { actions } from 'astro:actions';
-document.addEventListener('DOMContentLoaded', () => {
-
-	const btnlogOut = document.querySelector(
-		'#logOut'
-	) as HTMLButtonElement;
-	btnlogOut.addEventListener('click', async () => {
-		await actions.logOut();
-		window.location.replace('/')
+	document.addEventListener('DOMContentLoaded', () => {
+		const btnlogOut = document.querySelector(
+			'#logOut'
+		) as HTMLButtonElement;
+		btnlogOut.addEventListener('click', async () => {
+			await actions.logOut();
+			window.location.replace('/');
+		});
 	});
-})
-	
-
 </script>
