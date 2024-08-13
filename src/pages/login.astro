@@ -1,19 +1,13 @@
 ---
-
-
+import LoginComponent from '@/components/auth/LoginComponent.astro';
 import { mainMenu } from '../components/data/menuData';
 import Footer from '../components/Footer/Footer.astro';
 import Header from '../components/header/Header.astro';
 import Layout from '../layouts/Layout.astro';
 ---
 
-<Layout title="Protected | Aplication">
+<Layout title="Login">
 	<Header origin={mainMenu} />
-    <section class="min-h-screen">
-        <h1>
-            Hola protected
-        </h1>
-
-    </section>
+		<LoginComponent />
 	<Footer/>
 </Layout>

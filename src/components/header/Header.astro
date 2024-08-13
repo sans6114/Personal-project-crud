@@ -1,33 +1,97 @@
 ---
+import { firebase } from '@/firebase/config';
 import './header.css';
 const { origin } = Astro.props;
 import Logo from '../Logo.astro';
+
+const linksLogged = [
+	{ link: '#', content: 'Avatars', icon: 'lucide:home' },
+	{ link: '#', content: 'Avatars favoritos', icon: 'lucide:home' },
+];
+
+const user = firebase.auth.currentUser;
+const { isLoggedIn } = Astro.locals;
 ---
 
 <header class="header">
 	<div class="header__container">
-		<Logo name="Jhon Doe"/>
-		<nav class="links"   tabindex="0.1">
-			<button class="menu__btn" >Menú</button>
+		<Logo name="Jhon Doe" />
+		<nav class="links" tabindex="0.1">
+			<button class="menu__btn">Menú</button>
 			<ul class="header__list">
 				{
-					origin.map((data) => (
-						<li>
-							<a class="menu__link" href={data.link}>
-								<span class="icon__container" >
-									<iconify-icon
-										class="icons"
-										icon={data.icon}
-										width="20"
-										height="20"
-									/>
-									{data.content}
-								</span>
-							</a>
-						</li>
-					))
+					isLoggedIn
+						? linksLogged.map((data) => (
+								<li>
+									<a class="menu__link" href={data.link}>
+										<span class="icon__container">
+											<iconify-icon
+												class="icons"
+												icon={data.icon}
+												width="20"
+												height="20"
+											/>
+											{data.content}
+										</span>
+									</a>
+								</li>
+							))
+						: origin.map((data) => (
+								<li>
+									<a class="menu__link" href={data.link}>
+										<span class="icon__container">
+											<iconify-icon
+												class="icons"
+												icon={data.icon}
+												width="20"
+												height="20"
+											/>
+											{data.content}
+										</span>
+									</a>
+								</li>
+							))
+				}
+				<a
+					href="/login"
+					class="bg-transparent hover:bg-violet-700 text-white font-semibold hover:text-white py-2 px-4 border border-violet-500 hover:border-transparent rounded"
+				>
+					Log In
+				</a>
+				{
+					user && (
+						<a class="bg-transparent hover:bg-violet-700 text-white font-semibold hover:text-white py-2 px-4 border border-violet-500 hover:border-transparent rounded">
+							My user
+						</a>
+					)
+				}
+				{
+					user && (
+						<button
+							id="logOut"
+							class="bg-transparent hover:bg-red-700 text-white font-semibold hover:text-white py-2 px-4 border border-red-500 hover:border-transparent rounded"
+						>
+							Log out
+						</button>
+					)
 				}
 			</ul>
 		</nav>
 	</div>
 </header>
+
+<script>
+	import { actions } from 'astro:actions';
+document.addEventListener('DOMContentLoaded', () => {
+
+	const btnlogOut = document.querySelector(
+		'#logOut'
+	) as HTMLButtonElement;
+	btnlogOut.addEventListener('click', async () => {
+		await actions.logOut();
+		window.location.replace('/')
+	});
+})
+	
+
+</script>

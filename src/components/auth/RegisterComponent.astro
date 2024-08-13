@@ -1,18 +1,12 @@
 ---
-import Register from './Register.astro';
-
-import "../About/about.css"
-
+import Register from './RegisterForm.astro';
 const subtitle = 'If you already a member,easly logIn'
-
-
-const {} = Astro.props;
 ---
 
-<section class="bg-gray-50 min-h-screen flex items-center justify-center">
+<section class="min-h-screen flex items-center justify-center">
 	<!--TODO: HACER CONDICION, PENSAR SI AGRTEGAR ESTADO, PERO SE TIENE QUE RENDERIZAR UN LOGIN, O REGISRO DEPENDIENDO DE LO QUE QUIERA EL USER -->
 	<!--LOGIN -->
-	<div class="bg-gray-200 flex max-w-[1000px] rounded-3xl shadow-3xl p-5">
+	<div class="bg-cyan-50 flex max-w-[1000px] rounded-3xl shadow-3xl p-5">
 		<!--form pero por condicion con vainilla js -->
 		<div id="register" class="md:w-1/2 px-8 md:mx-auto">
 			<Register title="Register" subtitle={subtitle} />

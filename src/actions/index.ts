@@ -1,5 +1,11 @@
-import { registerUser } from './auth';
+import {
+  logIn,
+  logOut,
+  registerUser,
+} from './auth';
 
 export const server = {
-    registerUser
+    registerUser,
+    logOut,
+    logIn
 }

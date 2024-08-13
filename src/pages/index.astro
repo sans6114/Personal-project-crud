@@ -1,6 +1,6 @@
 ---
 import About from '../components/About/About.astro';
-import Auth from '../components/auth/Auth.astro';
+import RegisterComponent from '../components/auth/RegisterComponent.astro';
 import { mainMenu } from '../components/data/menuData';
 import Footer from '../components/Footer/Footer.astro';
 import Header from '../components/header/Header.astro';
@@ -13,7 +13,7 @@ import Layout from '../layouts/Layout.astro';
 	<Header origin={mainMenu} />
 		<Hero />
 		<About />
-		<Auth />
+		<RegisterComponent />
 		<Portfolio />
 	<Footer/>
 </Layout>
