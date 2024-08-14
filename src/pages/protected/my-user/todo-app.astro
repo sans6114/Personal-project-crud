@@ -1,0 +1,71 @@
+---
+import LayoutUser from "@/layouts/LayoutUser.astro";
+import AddTodo from '@/components/protected/AddTodo.astro'
+
+---
+
+<LayoutUser>
+    <section class="relative min-h-screen">
+
+        <h1>hola Here's your TODOS</h1>
+        <div class="overflow-x-auto">
+            <table class="table">
+              <!-- head -->
+              <thead>
+                <tr>
+                  <th></th>
+                  <th>TODO NAME</th>
+                  <th>What is?</th>
+                  <th>Complete?</th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- row 1 -->
+                <tr>
+                  <th>1</th>
+                  <td>Cy Ganderton</td>
+                  <td>Quality Control Specialist</td>
+                  <td>Blue</td>
+                </tr>
+                <!-- row 2 -->
+                <tr>
+                  <th>2</th>
+                  <td>Hart Hagerty</td>
+                  <td>Desktop Support Technician</td>
+                  <td>Purple</td>
+                </tr>
+                <!-- row 3 -->
+                <tr>
+                  <th>3</th>
+                  <td>Brice Swyre</td>
+                  <td>Tax Accountant</td>
+                  <td>Red</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+    
+    <button id="btn">Get task</button>
+
+        
+<AddTodo/>
+    </section>
+  
+
+</LayoutUser>
+
+<script>
+import { actions } from "astro:actions"
+
+  
+  document.addEventListener('DOMContentLoaded', () => {
+    
+    const btn = document.querySelector('#btn') as HTMLButtonElement
+
+    btn?.addEventListener('submit', async() => {
+const data = await actions.getTasks.safe()
+console.log(data)
+return data
+    })
+  })
+</script>

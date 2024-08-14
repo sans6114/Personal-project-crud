@@ -3,9 +3,17 @@ import {
   logOut,
   registerUser,
 } from './auth';
+import {
+  addTask,
+  getTasks,
+} from './firestore';
 
 export const server = {
     registerUser,
     logOut,
-    logIn
+    logIn,
+    //firestore
+    getTasks,
+    addTask,
+    
 }

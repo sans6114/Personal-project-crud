@@ -10,8 +10,9 @@ export default defineConfig({
     enabled: false
   },
   integrations: [react(), tailwind(), sitemap()],
-  output: 'server', // or 'server'
+  output: 'server',
+  // or 'server'
   experimental: {
-    actions: true,
-  },
+    actions: true
+  }
 });
