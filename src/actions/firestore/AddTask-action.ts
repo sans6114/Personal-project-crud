@@ -25,8 +25,6 @@ export const addTask = defineAction({
     } catch (e) {
       console.error("Error adding document: ", e);
     }
-
-    console.log(title, description)
     return { ok: true, msg: 'Task adding' }
   }
 })

@@ -15,5 +15,4 @@ export const server = {
     //firestore
     getTasks,
     addTask,
-    
 }

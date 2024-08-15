@@ -1,6 +1,21 @@
 ---
 import LayoutUser from "@/layouts/LayoutUser.astro";
 import AddTodo from '@/components/protected/AddTodo.astro'
+import {firebase} from '@/firebase/config'
+
+
+interface Tasks {
+  title: string;
+  description: string;
+}
+
+const db = firebase.db;
+const tasksRef = db.collection("tasks");
+const tasksSnapshot = await tasksRef.get();
+const tasks = tasksSnapshot.docs.map((task):Tasks => {
+
+  return task.data(),
+}) ;
 
 ---
 
@@ -54,18 +69,3 @@ import AddTodo from '@/components/protected/AddTodo.astro'
 
 </LayoutUser>
 
-<script>
-import { actions } from "astro:actions"
-
-  
-  document.addEventListener('DOMContentLoaded', () => {
-    
-    const btn = document.querySelector('#btn') as HTMLButtonElement
-
-    btn?.addEventListener('submit', async() => {
-const data = await actions.getTasks.safe()
-console.log(data)
-return data
-    })
-  })
-</script>
