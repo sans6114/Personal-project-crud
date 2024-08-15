@@ -2,65 +2,52 @@
 import LayoutUser from "@/layouts/LayoutUser.astro";
 import AddTodo from '@/components/protected/AddTodo.astro'
 import {firebase} from '@/firebase/config'
-
-
+import { getFirestore } from 'firebase/firestore';
+import { collection, getDocs } from 'firebase/firestore';
 interface Tasks {
   title: string;
   description: string;
 }
 
 const db = firebase.db;
-const tasksRef = db.collection("tasks");
-const tasksSnapshot = await tasksRef.get();
-const tasks = tasksSnapshot.docs.map((task):Tasks => {
-
-  return task.data(),
-}) ;
-
+const tasksRef = collection(db, "tasks");
+const tasksSnapshot = await getDocs(tasksRef);
+const tasks:Tasks[] = tasksSnapshot.docs.map((task): Tasks => {
+  return task.data() as Tasks
+})
+console.log(tasks)
 ---
 
 <LayoutUser>
     <section class="relative min-h-screen">
 
         <h1>hola Here's your TODOS</h1>
-        <div class="overflow-x-auto">
+        <h1>{tasks.map(task => task.title)}</h1>
+        {
+          tasks.map((task) => {
             <table class="table">
               <!-- head -->
               <thead>
                 <tr>
                   <th></th>
-                  <th>TODO NAME</th>
+                  <th>{task.title}</th>
                   <th>What is?</th>
                   <th>Complete?</th>
                 </tr>
               </thead>
               <tbody>
-                <!-- row 1 -->
+                <!-- rows -->
                 <tr>
                   <th>1</th>
-                  <td>Cy Ganderton</td>
-                  <td>Quality Control Specialist</td>
-                  <td>Blue</td>
-                </tr>
-                <!-- row 2 -->
-                <tr>
-                  <th>2</th>
-                  <td>Hart Hagerty</td>
-                  <td>Desktop Support Technician</td>
-                  <td>Purple</td>
-                </tr>
-                <!-- row 3 -->
-                <tr>
-                  <th>3</th>
-                  <td>Brice Swyre</td>
-                  <td>Tax Accountant</td>
-                  <td>Red</td>
+                  <td>{task.title}</td>
+                  <td>{task.description}</td>
                 </tr>
               </tbody>
             </table>
-          </div>
     
-    <button id="btn">Get task</button>
+          })
+        }
+
 
         
 <AddTodo/>
